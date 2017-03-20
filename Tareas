@@ -1,0 +1,115 @@
+Item:
+Name
+Description
+Cost
+Price
+Tax
+Measure
+Qty
+
+belongs to Inventory
+belongs to Charge_lines
+
+Room:
+Number
+Name
+Description
+Inventory
+Charge
+Reservation
+Invoice
+Status
+
+hasOne inventory
+hasMany charge
+hasMany reservation
+hasMany invoice
+belongs to Customer
+
+Parameters:
+Name
+Currency
+Address
+Phone
+Resolution
+InvoiceNum
+Max
+Min
+
+Customer:
+document
+Name
+SecondName
+LastName
+SecondLastName
+Age
+Gender
+CreditCard
+
+hasMany Reservation
+hasMany Charges
+hasMany Invoices
+
+Inventory:
+ItemId
+qty
+room
+active
+
+hasMany Item
+belongs to Room
+
+Reservation:
+Room
+Customer
+Inventory
+Charge
+Invoice
+Checkin
+CheckOut
+Status
+
+belongs to Customer
+belongs to Room
+
+
+Charge:
+Room
+Customer
+Status
+
+
+belongs to Room
+belongs to Customer
+hasMany ChargeLines
+hasOne Invoice
+
+Charge_lines:
+charge
+item
+qty
+
+hasMany Item
+belongs to Charge 
+hasOne Invoice_Lines
+
+Invoice:
+InvoiceNum
+Customer
+TaxValue
+InvoiceValue
+
+belongs to Customer
+HasMany Invoice_Lines
+
+Invoice_Lines:
+InvoiceNum
+Item
+qty
+tax
+
+belongs to Invoice
+belongs to Charge_Lines
+
+
+
